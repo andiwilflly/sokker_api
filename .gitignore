@@ -1,0 +1,11 @@
+node_modules/
+dist/
+config/test_config.yml
+build/node*
+build/appimage*
+packages/
+/.idea
+.env
+.env.local
+yarn-error.log
+
