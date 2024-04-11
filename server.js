@@ -39,7 +39,7 @@ app.get('/player-price', cors(corsOptions), async (req, res) => {
 		const title = $('.max-w-8 .strong').text();
 
 		// Send the parsed HTML or extracted data as a response
-		res.send({ price: parseInt(title.replace(/[,€]/g, ''), 10) * 6.4 });
+		res.send({ price: Math.round(parseInt(title.replace(/[,€]/g, ''), 10) * 6.4) });
 	} catch (error) {
 		// Handle any errors that occur during the process
 		console.error('Error fetching and parsing HTML:', error);
