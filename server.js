@@ -39,7 +39,7 @@ app.get('/player-price', cors(corsOptions), async (req, res) => {
 		// Select all 'td' elements inside elements with class 'max-w-8'
 		const elements = $('.max-w-8 td');
 		// Get the last element and extract its text
-		const text = elements.last().text();
+		const title = elements.last().text();
 
 		// Send the parsed HTML or extracted data as a response
 		res.send({ price: Math.round(parseInt(title.replace(/[,€]/g, ''), 10) * 6.4) });
