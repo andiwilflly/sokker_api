@@ -33,16 +33,15 @@ app.get('/player-price', cors(corsOptions), async (req, res) => {
 
 		// Load the HTML content into Cheerio
 		const $ = cheerio.load(response.data);
+		
+		// Get the price element and extract its text
+		const title = $('.max-w-8 td strong').text();
 
-		// Now you can use Cheerio to parse and manipulate the HTML
-		// For example, to extract the text of a specific element:
-		// Select all 'td' elements inside elements with class 'max-w-8'
-		const elements = $('.max-w-8 td');
-		// Get the last element and extract its text
-		const title = elements.last().text();
+		// Remove commas and the euro symbol, then convert to a number and perform the calculation
+		const price = Math.round(parseInt(title.replace(/[,€]/g, ''), 10) * 6.4);
 
 		// Send the parsed HTML or extracted data as a response
-		res.send({ price: Math.round(parseInt(title.replace(/[,€]/g, ''), 10) * 6.4) });
+		res.send({ price });
 	} catch (error) {
 		// Handle any errors that occur during the process
 		console.error('Error fetching and parsing HTML:', error);
